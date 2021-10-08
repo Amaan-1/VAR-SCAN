@@ -13,6 +13,7 @@ var variant; //This will contain the value of "variant_proto", in an uppercase(C
 var gotit; //Check if the [OK] Button is clicked for the Alarm
 var ispassed; //Will contain the parameter that, "if the glass is passed or not - yes/no"
 var bodied = false; //Check if the <tbody> WAS LANDED to <table> or not
+var date;
 
 //TABLE BUILDER [are tables also built by any kinda builder ?🤨]; // Store the elements in variables and join them to create an innerHTML from that combination
 var mange = 0;
@@ -221,7 +222,7 @@ function generatetable() {
 
         //TIME:AND.DATE
         var ease = new Date(); //ease with roots of variables 😁
-        var date = ease.getDate() + '-' + (ease.getMonth() + 1) + '-' + ease.getFullYear();
+        date = ease.getDate() + '-' + (ease.getMonth() + 1) + '-' + ease.getFullYear();
 
         //Call the time in 24-hour :FORMAT:
         //var time = ease.getHours() + ":" + ease.getMinutes() + "." + ease.getSeconds();
@@ -334,6 +335,10 @@ function html_table_to_excel() {
     var filename = prompt("Please,\nName The Spreadsheat [Excel Report]");
     var finalfn = filename + ".csv";
     $("#glass_data").tableHTMLExport({ type: 'csv', filename: finalfn });
+    var previouscontent = gravity.innerHTML;
+    var dater = date;
+    gravity.innerHTML = previouscontent + "<a id='tobeclicked' href='mailto:naeem.mails@gmail.com?subject=Glass%20Scan%20REPORT%20of%20" + dater + "'></a>";
+    document.getElementById("tobeclicked").click();
 }
 
 function terminator() {
